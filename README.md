@@ -44,9 +44,9 @@ Si inicias sesión con el usuario "admin" puedes acceder al listado de los usuar
 1. login.html > Javi (28-04-2024)
 2. registro.html > Jaime (26-04-2024)
 3. menu.html > Entre los tres (-)
-4. custom.html > Manuel (-)
+4. custom.html > Manuel (28-04-2024)
 5. game.html > Entre los tres (-)
-6. end.html > Manuel (-)
+6. end.html > Manuel (28-04-2024)
 7. contact.html > Javi (28-04-2024)
 8. users.html > Jaime (01-05-2024)
 
