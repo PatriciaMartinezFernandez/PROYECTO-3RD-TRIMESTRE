@@ -11,7 +11,7 @@ Mira email y password para comprobar si el usuario existe, si existe accede al m
 
 2. register.html
    
-Mira nombreCompleto, username, email, password y confirmPassword para guardar un nuevo usuario
+Mira nombreCompleto, username, email, password, confirmPassword y aceptarPoliticas para guardar un nuevo usuario
 
 3. menu.html
 
