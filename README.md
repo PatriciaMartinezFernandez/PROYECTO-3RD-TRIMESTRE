@@ -43,15 +43,15 @@ Si inicias sesión con el usuario "admin" puedes acceder al listado de los usuar
 
 1. login.html > Javi (28-04-2024)
 2. registro.html > Jaime (26-04-2024)
-3. menu.html > Entre los tres (-)
+3. menu.html > Entre los tres (07-05-2024)
 4. custom.html > Manuel (28-04-2024)
-5. game.html > Entre los tres (-)
+5. game.html > Entre los tres (09-05-2024)
 6. end.html > Manuel (28-04-2024)
 7. contact.html > Javi (28-04-2024)
 8. users.html > Jaime (01-05-2024)
 
 ### > CSS
 
-1. general.css > Entre los tres (-)
-2. forms.css > Entre los tres (-)
-3. game.css > Entre los tres (-)
+1. general.css > Entre los tres (09-05-2024)
+2. forms.css > Entre los tres (02-05-2024)
+3. game.css > Entre los tres (07-05-2024)
