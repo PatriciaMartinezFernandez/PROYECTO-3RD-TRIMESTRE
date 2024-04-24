@@ -15,7 +15,7 @@ Mira nombreCompleto, username, email, password, confirmPassword y aceptarPolitic
 
 3. menu.html
 
-Botón para iniciar partida, otro para crear una partida personalizada (no funciona es solo para trabajar formularios) y un historial de partidas jugadas
+Botón para iniciar partida, otro para crear una partida personalizada (no funciona es solo para trabajar formularios) y un historial de partidas jugadas + un monedero para las partidas
 
 4. custom.html (no funciona solo para aprender formularios) 
 
