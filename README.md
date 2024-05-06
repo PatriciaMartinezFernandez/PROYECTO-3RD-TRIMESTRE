@@ -36,6 +36,10 @@ Otro formulario para contactar con los desarrolladores, mira nombreCompleto, ema
 8. users.html
 
 Si inicias sesión con el usuario "admin" puedes acceder al listado de los usuarios logueados
+
+9. monedero.html
+
+Si pulsas en la cantidad de monedas del usuario te lleva al menú para añadir o retirar monedas de esta.
    
 
 ## Reparto y estimación
@@ -49,9 +53,13 @@ Si inicias sesión con el usuario "admin" puedes acceder al listado de los usuar
 6. end.html > Manuel (28-04-2024)
 7. contact.html > Javi (28-04-2024)
 8. users.html > Jaime (01-05-2024)
+9. monedero.html > Manuel (06-05-2024)
 
 ### > CSS
 
 1. general.css > Entre los tres (09-05-2024)
 2. forms.css > Entre los tres (02-05-2024)
 3. game.css > Entre los tres (07-05-2024)
+4. menu.css > Entre los tres (07-05-2024)
+5. monedero.css > Manuel (06-05-2024)
+6. users.css > Jaime (01-05-2024)
