@@ -1,4 +1,3 @@
-@import url(/3rd/css/users.css);
 body {
     background: linear-gradient(to top right, #1e242e, #ae2d3c);
     height: 100vh;
@@ -16,7 +15,7 @@ body {
     background-color: white;
     padding: 20px;
     border-radius: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: -15px 15px black;
 }
 
 .menu-container h1 {
@@ -35,8 +34,8 @@ body {
 
 .menu-container .button-container a {
     display: inline-block;
-    width: 200px;
-    padding: 10px;
+    width: auto;
+    padding: 10px 20px;
     margin: 0 10px;
     background-color: black;
     color: white;
@@ -44,7 +43,7 @@ body {
     font-size: 1.2rem;
     text-decoration: none;
     border-radius: 20px;
-    transition: all 0.3s ease;
+    position: relative;
 }
 
 .menu-container .button-container a:first-child {
@@ -89,4 +88,33 @@ body {
     word-spacing: 20px;
     padding: 5px 25px;
     margin-top: 15px;
+}
+
+.coins-container-top {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.coins-container-top img {
+    width: 30px;
+    margin-right: 5px;
+}
+
+.coins-container-top #wallet-coins {
+    font-size: 1.2rem;
+    margin-left: 5px;
+}
+
+#play-cost {
+    font-size: 1.2rem;
+    margin-left: 13px;
+}
+
+.coin-icon {
+    width: 30px;
+    margin-right: 5px;
+    vertical-align: middle;
 }
