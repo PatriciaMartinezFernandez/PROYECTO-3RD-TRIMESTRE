@@ -1,0 +1,21 @@
+@import url(forms.css);
+
+
+.form h2 {
+  margin: 10px 0px 20px 0px;
+  text-align: center;
+}
+
+.form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -80%);
+    background-color: white;
+    border-radius: 20px;
+    padding: 1.5em;
+    min-height: 50px;
+    min-width: 300px;
+    font-size: 2rem;
+    box-shadow: -15px 15px black;
+  }
