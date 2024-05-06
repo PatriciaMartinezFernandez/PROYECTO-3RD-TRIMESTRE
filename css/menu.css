@@ -118,3 +118,24 @@ body {
     margin-right: 5px;
     vertical-align: middle;
 }
+.wallet-link {
+    text-decoration: none;
+    color: black;
+}
+
+.wallet-link:hover {
+    text-decoration: underline;
+}
+
+.wallet-link #wallet-coins {
+    font-size: 1.2rem;
+    margin-left: 5px;
+}
+.menu-link {
+    text-decoration: none;
+    color: black;
+}
+
+.menu-link:hover {
+    text-decoration: underline;
+}
