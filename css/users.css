@@ -3,6 +3,10 @@
   overflow-y:auto;
 }
 
+.usuarios::-webkit-scrollbar {
+  display: none;
+}
+
 .form > .usuarios > .user {
   border: 1px solid #202020;
   border-radius: 25px;

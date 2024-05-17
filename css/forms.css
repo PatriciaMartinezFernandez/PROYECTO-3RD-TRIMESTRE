@@ -31,7 +31,7 @@ p {
   font-size: 1.2rem;
 }
 
-.form input[type="submit"] {
+.form input[type="button"] {
   border: none;
   background-color: black;
   color: white;
@@ -43,4 +43,44 @@ p {
   padding: 0.45rem 2.5rem;
   font-size: 1.4rem;
   cursor: pointer;
+}
+
+.invalido {
+background-color: #f36979;
+padding: 20px 40px;
+min-width: 420px;
+position: absolute;
+right: 0px;
+top: 10px;
+overflow: hidden;
+border-radius: 4px;
+border-left: 8px solid rgb(182, 46, 46);
+}
+
+.valido {
+  background-color: #96ff9b;
+  padding: 20px 40px;
+  min-width: 420px;
+  position: absolute;
+  right: 0px;
+  top: 10px;
+  overflow: hidden;
+  border-radius: 4px;
+  border-left: 8px solid rgb(39, 167, 88);
+}
+
+#notificaciones.show {
+  animation: show_slide 0.5s ease forwards;
+}
+
+@keyframes show_slide {
+  0% {
+    transform: translateX(40%);
+  }
+  50% {
+    transform: translateX(25%);
+  }
+  100% {
+    transform: translateX(30%);
+  }
 }

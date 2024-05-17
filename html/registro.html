@@ -13,7 +13,7 @@
     <div class="form">
         <form action="#" method="post">
             <h2>REGISTRATE</h2>
-            <label for="nombre">Nombre Completo:</label><br>
+            <label for="nombreCompleto">Nombre Completo:</label><br>
             <input id="nombreCompleto" type="text" placeholder="Daniela Díaz" required><br>
 
             <label for="username">Nombre de Usuario:</label><br>
@@ -22,17 +22,19 @@
             <label for="email">Correo Electrónico:</label><br>
             <input id="email" type="email" placeholder="ladani19@gmail.com" required><br>
 
-            <label for="password">Contraseña:</label><br>
+            <label for="pwd">Contraseña:</label><br>
             <input id="pwd" type="password" placeholder="Contraseña" required><br>
 
-            <label for="password2">Confirmar contraseña:</label><br>
+            <label for="pwd2">Confirmar contraseña:</label><br>
             <input id="pwd2" type="password" placeholder="Confirmar contraseña" required><br>
 
-            <input type="submit" value="Crear cuenta" onclick="validacion()">
+            <input type="button" value="Crear cuenta" onclick="validacion()">
         </form>
     </div>
 
-    <script src="../js/users.js"></script>
+    <div id="notificaciones" class="notificaciones"></div>
+
+    <script src="../js/registro.js"></script>
 </body>
 
 </html>
