@@ -1,21 +1,91 @@
 @import url(forms.css);
 
-
-.form h2 {
-  margin: 10px 0px 20px 0px;
-  text-align: center;
+* {
+    margin-top: 0%;
 }
 
-.form {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -80%);
+#layout {
     background-color: white;
-    border-radius: 20px;
-    padding: 1.5em;
-    min-height: 50px;
-    min-width: 300px;
-    font-size: 2rem;
-    box-shadow: -15px 15px black;
-  }
+    border: 1px black solid;
+    text-align: center;
+    font-size: 22px;
+    border-radius: 10px;
+    padding: 2.5%;
+    height: 70%;
+}
+
+  .game {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 50px 20%;
+}
+
+#cartonUsuario, #cartonMaquina {
+    border: 1px black solid;
+    height: 25%;
+    width: 25%;
+    text-align: center;
+    font-size: 22px;
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: white;
+}
+
+#cartonUsuario td , #cartonMaquina td {
+    border: 1px black solid;
+    padding: 3px;
+ }
+
+ .celda {
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    border: 0.5px solid #cccece;
+ }
+
+ .celda:hover {
+    background-color: #cccece;
+}
+
+.celda p {
+    margin: 5px;
+    min-width: 22px;
+    text-align: center;
+}
+
+ #bolas {
+    background-color: white;
+    border: 1px black solid;
+    text-align: center;
+    font-size: 22px;
+    border-radius: 10px;
+    padding: 2.5%;
+    height: 70%;
+}
+
+#bolaGenerada {
+    border: 1px black solid;
+    width: 65px;
+    display: block;
+    margin: 20px auto;
+}
+
+.bolaCantada {
+    background-color: orange;
+}
+
+.celdaBolas {
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    border: 0.5px solid #cccece;
+ }
+
+ .celdaBolas p {
+    margin: 5px;
+    min-width: 22px;
+    text-align: center;
+}
