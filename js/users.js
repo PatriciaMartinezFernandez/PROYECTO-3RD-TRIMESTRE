@@ -9,3 +9,9 @@ document.addEventListener("DOMContentLoaded", function () {
         usuariosDiv.appendChild(userDiv);
     });
 });
+
+function salir() {
+    setTimeout(function () {
+        window.location.assign("login.html");
+      }, 500);
+}

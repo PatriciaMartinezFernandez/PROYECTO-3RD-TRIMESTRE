@@ -45,6 +45,20 @@ p {
   cursor: pointer;
 }
 
+.form input[type="submit"] {
+  border: none;
+  background-color: black;
+  color: white;
+  display: block;
+  margin: auto;
+  margin-top: 40px;
+  margin-bottom: 0;
+  border-radius: 17px;
+  padding: 0.45rem 2.5rem;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
 .invalido {
 background-color: #f36979;
 padding: 20px 40px;
