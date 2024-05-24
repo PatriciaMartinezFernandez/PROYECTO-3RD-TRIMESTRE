@@ -1,4 +1,5 @@
 let lineaCantada = false; // Variable para verificar si ya se ha cantado una línea
+let bingoCantado = false; // Variable para verificar si ya se ha cantado bingo
 
 // Función para generar un número aleatorio dentro de un rango específico
 function obtenerNumeroAleatorio(minimo, maximo) {
@@ -141,11 +142,12 @@ function marcarNumeroCarton(idCarton, num) {
   comprobarLinea(idCarton);
 }
 
-// Función para comprobar si se ha completado una línea
+// Función para comprobar si se ha completado una línea o bingo
 function comprobarLinea(idCarton) {
-  if (!lineaCantada) {
+  if (!lineaCantada || !bingoCantado) {
     let tabla = document.getElementById(idCarton);
     let filas = tabla.getElementsByTagName("tr");
+    let totalCeldasTachadas = 0;
 
     for (let i = 0; i < filas.length; i++) {
       let celdas = filas[i].getElementsByTagName("td");
@@ -154,15 +156,20 @@ function comprobarLinea(idCarton) {
       for (let j = 0; j < celdas.length; j++) {
         if (!celdas[j].classList.contains("tachado")) {
           lineaCompleta = false;
-          break;
+        } else {
+          totalCeldasTachadas++;
         }
       }
 
-      if (lineaCompleta) {
+      if (lineaCompleta && !lineaCantada) {
         lineaCantada = true;
         mostrarAnimacionLinea();
-        break;
       }
+    }
+
+    if (totalCeldasTachadas === 27 && !bingoCantado) { // Un cartón completo tiene 27 números
+      bingoCantado = true;
+      mostrarAnimacionBingo();
     }
   }
 }
@@ -185,6 +192,31 @@ function mostrarAnimacionLinea() {
   }, 50);
 }
 
+// Función para mostrar la animación de "BINGO"
+// Función para mostrar la animación de "BINGO"
+function mostrarAnimacionBingo() {
+  let animacionBingo = document.createElement("div");
+  animacionBingo.id = "animacionBingo";
+  animacionBingo.innerHTML = "¡BINGO!";
+  document.body.appendChild(animacionBingo);
+
+  setTimeout(() => {
+    animacionBingo.classList.add("mostrar");
+    setTimeout(() => {
+      animacionBingo.classList.remove("mostrar");
+      setTimeout(() => {
+        animacionBingo.remove();
+        // Sumar 20 monedas al monedero del jugador al ganar
+        let currentBalance = parseInt(localStorage.getItem('currentBalance')) || 0;
+        currentBalance += 20;
+        localStorage.setItem('currentBalance', currentBalance);
+        // Redireccionar a la página de fin de juego
+        window.location.assign("end.html");
+      }, 500);
+    }, 1000);
+  }, 50);
+}
+
 // Función para generar el tablero de bolas
 function generarTablonBolas() {
   let tabla = document.getElementById("tablaBolas");
@@ -201,3 +233,55 @@ function generarTablonBolas() {
 
 // Generar el tablero de bolas
 generarTablonBolas();
+
+// Actualizar el monedero en el menú principal
+updateBalanceDisplay();
+
+// Función para comprobar si se ha completado una línea o bingo
+function comprobarLinea(idCarton) {
+  if (!lineaCantada || !bingoCantado) {
+    let tabla = document.getElementById(idCarton);
+    let filas = tabla.getElementsByTagName("tr");
+    let totalCeldasTachadas = 0;
+
+    for (let i = 0; i < filas.length; i++) {
+      let celdas = filas[i].getElementsByTagName("td");
+      let lineaCompleta = true;
+
+      for (let j = 0; j < celdas.length; j++) {
+        if (!celdas[j].classList.contains("tachado")) {
+          lineaCompleta = false;
+        } else {
+          totalCeldasTachadas++;
+        }
+      }
+
+      if (lineaCompleta && !lineaCantada) {
+        lineaCantada = true;
+        mostrarAnimacionLinea();
+      }
+    }
+
+    if (totalCeldasTachadas === 27 && !bingoCantado) { // Un cartón completo tiene 27 números
+      bingoCantado = true;
+      mostrarAnimacionBingo();
+    }
+
+    // Chequear si es empate
+    if (lineaCantada && bingoCantado) {
+      if (idCarton === "cartonUsuario" && !bingoCantado) {
+        alert("Empate: Tanto tú como la máquina ganaron simultáneamente. Se te devuelven tus 10 coins.");
+        devolverCoins(10);
+      }
+    }
+  }
+}
+
+// Función para devolver monedas
+function devolverCoins(amount) {
+  let currentBalance = parseInt(localStorage.getItem('currentBalance')) || 0;
+  currentBalance += amount;
+  localStorage.setItem('currentBalance', currentBalance);
+  const walletCoinsElement = document.getElementById('wallet-coins');
+  walletCoinsElement.textContent = currentBalance;
+}

@@ -3,7 +3,7 @@
 ## Objetivo final del proyecto
 Realizar un bingo funcional contra un bot con HTML, CSS y JavaScript
 
-## Especificación de requisitos y análisis - HTML & CSS
+## Especificación de requisitos y análisis - HTML & CSS & JAVASCRIPT
 
 1. login.html
    
@@ -63,3 +63,15 @@ Si pulsas en la cantidad de monedas del usuario te lleva al menú para añadir o
 4. menu.css > Entre los tres (07-05-2024)
 5. monedero.css > Manuel (06-05-2024)
 6. users.css > Jaime (01-05-2024)
+
+### > JAVASCRIPT
+
+1. contacto.js > Jaime, Javier (22-05-2024)
+2. custom.js > Manuel (24-05-2024)
+3. end.js > Manuel (24-05-2024)
+4. game.js > Entre los tres (24-05-2024)
+5. login.js > Javier (22-05-2024)
+6. menu.js > Entre los tres (24-05-2024)
+7. monedero.js > Manuel (24-05-2024)
+8. registro.js > Jaime (20-05-2024)
+9. user.js > Jaime (20-05-2024)

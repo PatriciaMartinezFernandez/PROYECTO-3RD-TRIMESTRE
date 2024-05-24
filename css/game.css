@@ -92,7 +92,7 @@
   text-align: center;
 }
 
-#animacionLinea {
+#animacionLinea, #animacionBingo {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -108,7 +108,7 @@
   transition: transform 0.35s ease-in-out;
 }
 
-#animacionLinea.mostrar {
+#animacionLinea.mostrar, #animacionBingo.mostrar {
   transform: translate(-50%, -50%) scaleX(1);
 }
 
