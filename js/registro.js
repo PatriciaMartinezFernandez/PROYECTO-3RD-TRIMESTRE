@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const usuarioExiste = "Ese usuario ya existe.";
   const correoExiste = "Ese correo ya está en uso.";
+  const correoInvalido = "Formato de correo inválido.";
   const pwdInvalida = "Contraseña inválida.";
   const comprabacionIncorrecta = "Las contraseñas no coinciden.";
   const usuarioValido = "Usuario creado.";
@@ -25,6 +26,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function validarEmail(email) {
     return usuarios.some((usuario) => usuario.email === email);
+  }
+
+  function validarFormatoEmail(email) {
+    const resultado = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return resultado.test(email);
   }
 
   function validarPassword(pwd) {
@@ -57,6 +63,8 @@ document.addEventListener("DOMContentLoaded", function () {
       mensaje = usuarioExiste;
     } else if (validarEmail(email)) {
       mensaje = correoExiste;
+    } else if (!validarFormatoEmail(email)) {
+      mensaje = correoInvalido;
     } else if (!validarPassword(pwd)) {
       mensaje = pwdInvalida;
     } else if (!comprobarContrasenias(pwd, pwd2)) {
@@ -70,11 +78,10 @@ document.addEventListener("DOMContentLoaded", function () {
     mostrarNotificacion(mensaje, claseMensaje);
 
     if (claseMensaje === "valido") {
-        setTimeout(function () {
-            window.location.assign("login.html");
-        }, 800); 
+      setTimeout(function () {
+        window.location.assign("login.html");
+      }, 800);
     }
-    
   }
 
   window.validacion = validacion;

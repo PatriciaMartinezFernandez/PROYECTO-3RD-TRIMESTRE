@@ -4,6 +4,10 @@ body {
     overflow: hidden;
 }
 
+p {
+    margin-top: 18px;
+}
+
 .menu-container {
     position: absolute;
     top: 50%;
@@ -23,6 +27,7 @@ body {
     font-weight: 700;
     font-size: 3rem;
     color: black;
+    margin-top: 30px;
 }
 
 .menu-container .button-container {
@@ -139,3 +144,27 @@ body {
 .menu-link:hover {
     text-decoration: underline;
 }
+
+.ganador-usuario {
+    border: 1px solid #049143;
+    background-color: rgb(142, 248, 142);
+    border-radius: 25px;
+    padding: 5px 25px;
+    margin-top: 15px;
+  }
+  
+  .ganador-maquina {
+    border: 1px solid #9d0c04;
+    background-color: rgb(243, 36, 36);
+    border-radius: 25px;
+    padding: 5px 25px;
+    margin-top: 15px;
+  }
+  
+  .empate {
+    border: 1px solid #9d6504;
+    background-color: rgb(254, 243, 120);
+    border-radius: 25px;
+    padding: 5px 25px;
+    margin-top: 15px;
+  }

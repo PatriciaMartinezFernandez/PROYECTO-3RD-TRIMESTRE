@@ -148,6 +148,7 @@ function comprobarLinea(idCarton) {
     let tabla = document.getElementById(idCarton);
     let filas = tabla.getElementsByTagName("tr");
     let totalCeldasTachadas = 0;
+    let celdasTachadasEnLinea5 = 0;
 
     for (let i = 0; i < filas.length; i++) {
       let celdas = filas[i].getElementsByTagName("td");
@@ -159,17 +160,40 @@ function comprobarLinea(idCarton) {
         } else {
           totalCeldasTachadas++;
         }
+
+        // Verificar si se ha tachado una celda de la línea 5
+        if (i === 4 && celdas[j].classList.contains("tachado")) {
+          celdasTachadasEnLinea5++;
+        }
       }
 
       if (lineaCompleta && !lineaCantada) {
         lineaCantada = true;
         mostrarAnimacionLinea();
+
+        // Verificar si se ha completado la línea 5 y sumar 5 coins
+        if (celdasTachadasEnLinea5 === 9) {
+          sumarCoins(5);
+        }
       }
     }
 
     if (totalCeldasTachadas === 27 && !bingoCantado) { // Un cartón completo tiene 27 números
       bingoCantado = true;
-      mostrarAnimacionBingo();
+      if (idCarton === "cartonUsuario") {
+        mostrarAnimacionBingo("Usuario");
+
+      } else {
+        mostrarAnimacionBingo("Máquina");
+      }
+    }
+
+    // Chequear si es empate
+    if (lineaCantada && bingoCantado) {
+      if (idCarton === "cartonUsuario" && !bingoCantado) {
+        alert("Empate: Tanto tú como la máquina ganaron simultáneamente. Se te devuelven tus 10 coins.");
+        devolverCoins(10);
+      }
     }
   }
 }
@@ -193,11 +217,20 @@ function mostrarAnimacionLinea() {
 }
 
 // Función para mostrar la animación de "BINGO"
-// Función para mostrar la animación de "BINGO"
-function mostrarAnimacionBingo() {
+function mostrarAnimacionBingo(ganador) {
   let animacionBingo = document.createElement("div");
   animacionBingo.id = "animacionBingo";
-  animacionBingo.innerHTML = "¡BINGO!";
+  animacionBingo.innerHTML = `¡BINGO!`;
+  
+  // Asignar clase CSS según el ganador
+  if (ganador === "Usuario") {
+    animacionBingo.classList.add("ganador-usuario");
+  } else if (ganador === "Máquina") {
+    animacionBingo.classList.add("ganador-maquina");
+  } else {
+    animacionBingo.classList.add("empate");
+  }
+  
   document.body.appendChild(animacionBingo);
 
   setTimeout(() => {
@@ -206,6 +239,9 @@ function mostrarAnimacionBingo() {
       animacionBingo.classList.remove("mostrar");
       setTimeout(() => {
         animacionBingo.remove();
+        // Guardar información de la partida
+        let hora = new Date().toLocaleTimeString();
+        guardarPartida(ganador, hora);
         // Sumar 20 monedas al monedero del jugador al ganar
         let currentBalance = parseInt(localStorage.getItem('currentBalance')) || 0;
         currentBalance += 20;
@@ -216,6 +252,8 @@ function mostrarAnimacionBingo() {
     }, 1000);
   }, 50);
 }
+
+
 
 // Función para generar el tablero de bolas
 function generarTablonBolas() {
@@ -237,44 +275,11 @@ generarTablonBolas();
 // Actualizar el monedero en el menú principal
 updateBalanceDisplay();
 
-// Función para comprobar si se ha completado una línea o bingo
-function comprobarLinea(idCarton) {
-  if (!lineaCantada || !bingoCantado) {
-    let tabla = document.getElementById(idCarton);
-    let filas = tabla.getElementsByTagName("tr");
-    let totalCeldasTachadas = 0;
-
-    for (let i = 0; i < filas.length; i++) {
-      let celdas = filas[i].getElementsByTagName("td");
-      let lineaCompleta = true;
-
-      for (let j = 0; j < celdas.length; j++) {
-        if (!celdas[j].classList.contains("tachado")) {
-          lineaCompleta = false;
-        } else {
-          totalCeldasTachadas++;
-        }
-      }
-
-      if (lineaCompleta && !lineaCantada) {
-        lineaCantada = true;
-        mostrarAnimacionLinea();
-      }
-    }
-
-    if (totalCeldasTachadas === 27 && !bingoCantado) { // Un cartón completo tiene 27 números
-      bingoCantado = true;
-      mostrarAnimacionBingo();
-    }
-
-    // Chequear si es empate
-    if (lineaCantada && bingoCantado) {
-      if (idCarton === "cartonUsuario" && !bingoCantado) {
-        alert("Empate: Tanto tú como la máquina ganaron simultáneamente. Se te devuelven tus 10 coins.");
-        devolverCoins(10);
-      }
-    }
-  }
+// Función para guardar información de la partida
+function guardarPartida(ganador, hora) {
+  let partidas = JSON.parse(localStorage.getItem('partidas')) || [];
+  partidas.push({ ganador: ganador, hora: hora });
+  localStorage.setItem('partidas', JSON.stringify(partidas));
 }
 
 // Función para devolver monedas
@@ -286,57 +291,6 @@ function devolverCoins(amount) {
   walletCoinsElement.textContent = currentBalance;
 }
 
-// Función para comprobar si se ha completado una línea o bingo
-function comprobarLinea(idCarton) {
-  if (!lineaCantada || !bingoCantado) {
-    let tabla = document.getElementById(idCarton);
-    let filas = tabla.getElementsByTagName("tr");
-    let totalCeldasTachadas = 0;
-    let celdasTachadasEnLinea5 = 0;
-
-    for (let i = 0; i < filas.length; i++) {
-      let celdas = filas[i].getElementsByTagName("td");
-      let lineaCompleta = true;
-
-      for (let j = 0; j < celdas.length; j++) {
-        if (!celdas[j].classList.contains("tachado")) {
-          lineaCompleta = false;
-        } else {
-          totalCeldasTachadas++;
-        }
-
-        // Verificar si se ha tachado una celda de la línea 5
-        if (i === 4 && celdas[j].classList.contains("tachado")) {
-          celdasTachadasEnLinea5++;
-        }
-      }
-
-      if (lineaCompleta && !lineaCantada) {
-        lineaCantada = true;
-        mostrarAnimacionLinea();
-        
-        // Verificar si se ha completado la línea 5 y sumar 5 coins
-        if (celdasTachadasEnLinea5 === 9) {
-          sumarCoins(5);
-        }
-      }
-    }
-
-    if (totalCeldasTachadas === 27 && !bingoCantado) { // Un cartón completo tiene 27 números
-      bingoCantado = true;
-      mostrarAnimacionBingo();
-    }
-
-    // Chequear si es empate
-    if (lineaCantada && bingoCantado) {
-      if (idCarton === "cartonUsuario" && !bingoCantado) {
-        alert("Empate: Tanto tú como la máquina ganaron simultáneamente. Se te devuelven tus 10 coins.");
-        devolverCoins(10);
-      }
-    }
-  }
-}
-
 // Función para sumar coins al monedero
 function sumarCoins(amount) {
   let currentBalance = parseInt(localStorage.getItem('currentBalance')) || 0;
@@ -345,3 +299,4 @@ function sumarCoins(amount) {
   const walletCoinsElement = document.getElementById('wallet-coins');
   walletCoinsElement.textContent = currentBalance;
 }
+
