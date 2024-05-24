@@ -285,3 +285,63 @@ function devolverCoins(amount) {
   const walletCoinsElement = document.getElementById('wallet-coins');
   walletCoinsElement.textContent = currentBalance;
 }
+
+// Función para comprobar si se ha completado una línea o bingo
+function comprobarLinea(idCarton) {
+  if (!lineaCantada || !bingoCantado) {
+    let tabla = document.getElementById(idCarton);
+    let filas = tabla.getElementsByTagName("tr");
+    let totalCeldasTachadas = 0;
+    let celdasTachadasEnLinea5 = 0;
+
+    for (let i = 0; i < filas.length; i++) {
+      let celdas = filas[i].getElementsByTagName("td");
+      let lineaCompleta = true;
+
+      for (let j = 0; j < celdas.length; j++) {
+        if (!celdas[j].classList.contains("tachado")) {
+          lineaCompleta = false;
+        } else {
+          totalCeldasTachadas++;
+        }
+
+        // Verificar si se ha tachado una celda de la línea 5
+        if (i === 4 && celdas[j].classList.contains("tachado")) {
+          celdasTachadasEnLinea5++;
+        }
+      }
+
+      if (lineaCompleta && !lineaCantada) {
+        lineaCantada = true;
+        mostrarAnimacionLinea();
+        
+        // Verificar si se ha completado la línea 5 y sumar 5 coins
+        if (celdasTachadasEnLinea5 === 9) {
+          sumarCoins(5);
+        }
+      }
+    }
+
+    if (totalCeldasTachadas === 27 && !bingoCantado) { // Un cartón completo tiene 27 números
+      bingoCantado = true;
+      mostrarAnimacionBingo();
+    }
+
+    // Chequear si es empate
+    if (lineaCantada && bingoCantado) {
+      if (idCarton === "cartonUsuario" && !bingoCantado) {
+        alert("Empate: Tanto tú como la máquina ganaron simultáneamente. Se te devuelven tus 10 coins.");
+        devolverCoins(10);
+      }
+    }
+  }
+}
+
+// Función para sumar coins al monedero
+function sumarCoins(amount) {
+  let currentBalance = parseInt(localStorage.getItem('currentBalance')) || 0;
+  currentBalance += amount;
+  localStorage.setItem('currentBalance', currentBalance);
+  const walletCoinsElement = document.getElementById('wallet-coins');
+  walletCoinsElement.textContent = currentBalance;
+}
