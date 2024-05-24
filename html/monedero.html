@@ -1,28 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="../css/forms.css" />
-  <link rel="stylesheet" href="../css/monedero.css" />
-  <title>Juego del Bingo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/forms.css">
+    <link rel="stylesheet" href="../css/monedero.css">
+    <title>Juego del Bingo - Monedero</title>
 </head>
-
 <body>
-  <div class="menu-container">
-    <h1>Monedero</h1>
-    <h2>Saldo actual:</h2>
-    <span id="play-cost">100<img src="../Moneda.png" alt="Moneda" class="coin-icon"></span>
-    <div class="coins-form">
-      <form action="#" method="post">
-        <label for="coins">Cantidad de monedas:</label><br />
-        <input type="number" id="coins" name="coins" min="1" required /><br /><br />
-        <input type="submit" value="Añadir Monedas" id="add-coins" />
-        <input type="submit" value="Retirar Monedas" id="remove-coins" />
-      </form>
+    <div class="menu-container">
+        <h1>Monedero</h1>
+        <h2>Saldo actual:</h2>
+        <span id="current-balance">0<img src="../Moneda.png" alt="Moneda" class="coin-icon"></span>
+        <div class="coins-form">
+            <form action="menu.html" method="get">
+                <label for="coins">Cantidad de monedas:</label><br />
+                <input type="number" id="coins" name="coins" min="1" required /><br /><br />
+                <input type="submit" value="Añadir Monedas" id="add-coins" />
+                <input type="submit" value="Retirar Monedas" id="remove-coins" />
+                <input type="button" value="Volver al Menú" id="back-to-menu" onclick="window.location.href='menu.html'" />
+            </form>
+        </div>
     </div>
-  </div>
+    <script src="../js/monedero.js"></script>
 </body>
-
 </html>
