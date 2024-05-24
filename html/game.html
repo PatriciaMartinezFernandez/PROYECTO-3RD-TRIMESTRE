@@ -1,36 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Partida de Bingo</title>
-    <link rel="stylesheet" href="../css/game.css">
-</head>
-<body class="game">
+    <link rel="stylesheet" href="../css/game.css" />
+  </head>
+  <body class="game">
     <div id="layout">
-        <div>
-            <div id="carton">
-              <h1>Usuario</h1>
-              <table id="cartonUsuario"></table>
-            </div>
-        
-            <br>
-        
-            <div id="carton">
-              <h1>Máquina</h1>
-              <table id="cartonMaquina"></table>
-            </div>
-          </div>
+      <div>
+        <div id="carton">
+          <h1>Usuario</h1>
+          <table id="cartonUsuario"></table>
+        </div>
+        <br />
+        <div id="carton">
+          <h1>Máquina</h1>
+          <table id="cartonMaquina"></table>
+        </div>
+      </div>
     </div>
-  
     <div id="bolas" onload="generarTablonBolas()">
       <h1 id="bolaGenerada">-</h1>
       <table id="tablaBolas"></table>
-      <button  onclick="generarBola()">Siguiente bola</button>
+      <button id="boton" onclick="generarBola()">Siguiente bola</button>
     </div>
-  
   </body>
 
-<script src="../js/game.js"></script>
-
+  <script src="../js/game.js"></script>
 </html>

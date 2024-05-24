@@ -1,3 +1,5 @@
+let lineaCantada = false; // Variable para verificar si ya se ha cantado una línea
+
 // Función para generar un número aleatorio dentro de un rango específico
 function obtenerNumeroAleatorio(minimo, maximo) {
   return Math.floor(Math.random() * (maximo - minimo + 1)) + minimo;
@@ -33,11 +35,14 @@ function generarCartonBingo() {
     { min: 50, max: 59 },
     { min: 60, max: 69 },
     { min: 70, max: 79 },
-    { min: 80, max: 90 }
+    { min: 80, max: 90 },
   ];
 
+  // Generar columnas para cada rango y añadirlas al cartón
   for (let i = 0; i < rangosColumnas.length; i++) {
-    cartonBingo.push(generarColumna(rangosColumnas[i].min, rangosColumnas[i].max));
+    cartonBingo.push(
+      generarColumna(rangosColumnas[i].min, rangosColumnas[i].max)
+    );
   }
 
   return cartonBingo;
@@ -69,7 +74,7 @@ function imprimirCartonBingoMaquina(carton) {
   }
 }
 
-// Generar el cartón de bingo
+// Generar el cartón de bingo para el usuario y la máquina
 let cartonBingoUsuario = generarCartonBingo();
 let cartonBingoMaquina = generarCartonBingo();
 
@@ -77,16 +82,17 @@ let cartonBingoMaquina = generarCartonBingo();
 imprimirCartonBingoUsuario(cartonBingoUsuario);
 imprimirCartonBingoMaquina(cartonBingoMaquina);
 
+let bolasCantadas = []; // Array para almacenar las bolas que ya han sido cantadas
 
-let bolasCantadas = [];
-
+// Función para generar una nueva bola de bingo
 function generarBola() {
   let num = parseInt(obtenerNumeroAleatorio(1, 90));
   let nuevaBolaCantada = false;
 
+  // Asegurar que la bola generada no ha sido cantada previamente
   while (!nuevaBolaCantada) {
     if (bolasCantadas.includes(num)) {
-      num = parseInt(obtenerNumeroAleatorio(1, 90))
+      num = parseInt(obtenerNumeroAleatorio(1, 90));
     } else {
       bolasCantadas.push(num);
       nuevaBolaCantada = true;
@@ -99,20 +105,87 @@ function generarBola() {
   let tabla = document.getElementById("tablaBolas");
   let filas = tabla.getElementsByTagName("tr");
 
-  for (let i =0;i < filas.length; i++) {
+  // Marcar la bola en la tabla de bolas cantadas
+  for (let i = 0; i < filas.length; i++) {
     let celdas = filas[i].getElementsByTagName("td");
 
     for (let j = 0; j < celdas.length; j++) {
       if (parseInt(celdas[j].textContent) == num) {
         celdas[j].classList.add("bolaCantada");
-        console.log(celdas[j]);
       }
     }
   }
 
+  // Marcar el número en los cartones del usuario y la máquina
+  marcarNumeroCarton("cartonUsuario", num);
+  marcarNumeroCarton("cartonMaquina", num);
+
   return num;
 }
 
+// Función para marcar el número en el cartón
+function marcarNumeroCarton(idCarton, num) {
+  let tabla = document.getElementById(idCarton);
+  let filas = tabla.getElementsByTagName("tr");
+
+  for (let i = 0; i < filas.length; i++) {
+    let celdas = filas[i].getElementsByTagName("td");
+
+    for (let j = 0; j < celdas.length; j++) {
+      if (parseInt(celdas[j].textContent) == num) {
+        celdas[j].classList.add("tachado");
+      }
+    }
+  }
+
+  comprobarLinea(idCarton);
+}
+
+// Función para comprobar si se ha completado una línea
+function comprobarLinea(idCarton) {
+  if (!lineaCantada) {
+    let tabla = document.getElementById(idCarton);
+    let filas = tabla.getElementsByTagName("tr");
+
+    for (let i = 0; i < filas.length; i++) {
+      let celdas = filas[i].getElementsByTagName("td");
+      let lineaCompleta = true;
+
+      for (let j = 0; j < celdas.length; j++) {
+        if (!celdas[j].classList.contains("tachado")) {
+          lineaCompleta = false;
+          break;
+        }
+      }
+
+      if (lineaCompleta) {
+        lineaCantada = true;
+        mostrarAnimacionLinea();
+        break;
+      }
+    }
+  }
+}
+
+// Función para mostrar la animación de "LÍNEA"
+function mostrarAnimacionLinea() {
+  let animacionLinea = document.createElement("div");
+  animacionLinea.id = "animacionLinea";
+  animacionLinea.innerHTML = "¡LINEA!";
+  document.body.appendChild(animacionLinea);
+
+  setTimeout(() => {
+    animacionLinea.classList.add("mostrar");
+    setTimeout(() => {
+      animacionLinea.classList.remove("mostrar");
+      setTimeout(() => {
+        animacionLinea.remove();
+      }, 500);
+    }, 1000);
+  }, 50);
+}
+
+// Función para generar el tablero de bolas
 function generarTablonBolas() {
   let tabla = document.getElementById("tablaBolas");
 
@@ -120,12 +193,11 @@ function generarTablonBolas() {
     let fila = tabla.insertRow();
     for (let j = 1; j <= 10; j++) {
       let celda = fila.insertCell();
-      celda.innerHTML = `<p>${(i*9)+j+i}</p>`;
+      celda.innerHTML = `<p>${i * 9 + j + i}</p>`;
       celda.classList.add("celdaBolas");
     }
   }
 }
 
-
-
+// Generar el tablero de bolas
 generarTablonBolas();
