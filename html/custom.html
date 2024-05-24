@@ -4,17 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/forms.css">
+    <link rel="stylesheet" href="../css/custom.css">
+    <link rel="stylesheet" href="../css/users.css">
     <title>Configuración del Bingo</title>
 </head>
 <body>
-    <form class="form">
-        <h2>Configuración</h2>
-        <h2>de partida</h2>
-        <label for="numJugadores">Número de Jugadores:</label>
-        <input type="number" id="numJugadores" name="numJugadores" min="1" required><br><br>
-        <label for="numBolas">Número de Bolas en el Bombo:</label>
-        <input type="number" id="numBolas" name="numBolas" min="1" required><br><br>
-        <input type="submit" value="Comenzar Juego" href="">
-    </form>
+    <div class="form-container">
+        <form class="form">
+            <h2>Configuración</h2>
+            <h2>de partida</h2>
+            <label for="numJugadores">Número de Jugadores:</label>
+            <input type="number" id="numJugadores" name="numJugadores" min="1"><br><br>
+            <label for="numBolas">Número de Bolas en el Bombo:</label>
+            <input type="number" id="numBolas" name="numBolas" min="1"><br><br>
+
+            <label for="premios">Opciones de premios:</label>
+            <select id="premios" name="premios">
+                <option value="dinero">Dinero</option>
+                <option value="viaje">Viaje</option>
+                <option value="bonos_descuentos">Bonos y descuentos</option>
+            </select><br><br>
+
+            <label for="intervalo">Intervalo de llamada de números (segundos):</label>
+            <input type="number" id="intervalo" name="intervalo" min="5" max="15"><br><br>
+
+            <label for="personalizacion">Personalización de la interfaz:</label><br>
+            <label for="colorFondo">Color de fondo:</label>
+            <input type="color" id="colorFondo" name="colorFondo"><br>
+            <label for="colorBola">Color de la bola:</label>
+            <input type="color" id="colorBola" name="colorBola"><br><br>
+
+            <label for="accesibilidad">Opciones de accesibilidad:</label><br>
+            <input type="checkbox" id="altoContraste" name="altoContraste">
+            <label for="altoContraste">Alto contraste</label><br>
+            <input type="checkbox" id="textoGrande" name="textoGrande">
+            <label for="textoGrande">Texto grande</label><br><br>
+
+            <button id="boton" onclick="irAJuego()">Jugar partida</button><br>
+            <button type="button" id="boton" onclick="irAMenu()">Volver al menú</button><br>
+            <p style="text-align: center; color: rgb(254, 2, 2); margin-top: 20px;">Página en desarrollo...</p>
+        </form>
+    </div>
+    
+    <script src="/js/custom.js"></script>
 </body>
 </html>

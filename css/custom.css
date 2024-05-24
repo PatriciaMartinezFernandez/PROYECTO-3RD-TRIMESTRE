@@ -1,0 +1,14 @@
+body {
+    overflow-y: auto; 
+    margin: 0;
+}
+.form-container {
+    min-height: 150vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form h2:first-child {
+    margin-top: 520px;
+}

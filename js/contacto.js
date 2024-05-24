@@ -16,3 +16,9 @@ function enviarCorreo() {
     }
   );
 }
+
+function irAMenu() {
+  setTimeout(function (){
+      window.location.assign("menu.html");
+  }, 500)
+}
