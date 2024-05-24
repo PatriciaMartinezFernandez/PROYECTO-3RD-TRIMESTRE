@@ -75,3 +75,9 @@ Si pulsas en la cantidad de monedas del usuario te lleva al menú para añadir o
 7. monedero.js > Manuel (24-05-2024)
 8. registro.js > Jaime (20-05-2024)
 9. user.js > Jaime (20-05-2024)
+
+## Posibles mejoras
+1. Finalización del funcionamiento de custom.html y custom.js.
+2. Jugar contra un numero de entre 1 a 8 personas o 1 a 8 bots.
+3. Jugar online versus otros usuarios con posibilidad de añadir bots a la partida.
+

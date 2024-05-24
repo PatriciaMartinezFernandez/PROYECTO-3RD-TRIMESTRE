@@ -143,12 +143,12 @@ function marcarNumeroCarton(idCarton, num) {
 }
 
 // Función para comprobar si se ha completado una línea o bingo
+// Función para comprobar si se ha completado una línea o bingo
 function comprobarLinea(idCarton) {
   if (!lineaCantada || !bingoCantado) {
     let tabla = document.getElementById(idCarton);
     let filas = tabla.getElementsByTagName("tr");
     let totalCeldasTachadas = 0;
-    let celdasTachadasEnLinea5 = 0;
 
     for (let i = 0; i < filas.length; i++) {
       let celdas = filas[i].getElementsByTagName("td");
@@ -160,20 +160,13 @@ function comprobarLinea(idCarton) {
         } else {
           totalCeldasTachadas++;
         }
-
-        // Verificar si se ha tachado una celda de la línea 5
-        if (i === 4 && celdas[j].classList.contains("tachado")) {
-          celdasTachadasEnLinea5++;
-        }
       }
 
       if (lineaCompleta && !lineaCantada) {
         lineaCantada = true;
         mostrarAnimacionLinea();
-
-        // Verificar si se ha completado la línea 5 y sumar 5 coins
-        if (celdasTachadasEnLinea5 === 9) {
-          sumarCoins(5);
+        if (idCarton === "cartonUsuario") {
+          sumarCoins(5); // Sumar 5 monedas al usuario
         }
       }
     }
@@ -182,7 +175,6 @@ function comprobarLinea(idCarton) {
       bingoCantado = true;
       if (idCarton === "cartonUsuario") {
         mostrarAnimacionBingo("Usuario");
-
       } else {
         mostrarAnimacionBingo("Máquina");
       }
@@ -197,6 +189,7 @@ function comprobarLinea(idCarton) {
     }
   }
 }
+
 
 // Función para mostrar la animación de "LÍNEA"
 function mostrarAnimacionLinea() {
@@ -221,7 +214,7 @@ function mostrarAnimacionBingo(ganador) {
   let animacionBingo = document.createElement("div");
   animacionBingo.id = "animacionBingo";
   animacionBingo.innerHTML = `¡BINGO!`;
-  
+
   // Asignar clase CSS según el ganador
   if (ganador === "Usuario") {
     animacionBingo.classList.add("ganador-usuario");
@@ -230,7 +223,7 @@ function mostrarAnimacionBingo(ganador) {
   } else {
     animacionBingo.classList.add("empate");
   }
-  
+
   document.body.appendChild(animacionBingo);
 
   setTimeout(() => {
@@ -242,18 +235,24 @@ function mostrarAnimacionBingo(ganador) {
         // Guardar información de la partida
         let hora = new Date().toLocaleTimeString();
         guardarPartida(ganador, hora);
-        // Sumar 20 monedas al monedero del jugador al ganar
+
+        // Sumar monedas según el resultado
         let currentBalance = parseInt(localStorage.getItem('currentBalance')) || 0;
-        currentBalance += 20;
+        if (ganador === "Usuario") {
+          currentBalance += 20;
+        } else if (ganador === "Máquina") {
+          currentBalance += 0;
+        } else if (ganador === "Empate") {
+          currentBalance += 10;
+        }
         localStorage.setItem('currentBalance', currentBalance);
+
         // Redireccionar a la página de fin de juego
         window.location.assign("end.html");
       }, 500);
     }, 1000);
   }, 50);
 }
-
-
 
 // Función para generar el tablero de bolas
 function generarTablonBolas() {
@@ -299,4 +298,3 @@ function sumarCoins(amount) {
   const walletCoinsElement = document.getElementById('wallet-coins');
   walletCoinsElement.textContent = currentBalance;
 }
-
